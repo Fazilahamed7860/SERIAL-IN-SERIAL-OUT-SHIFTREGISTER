@@ -36,27 +36,31 @@ Developed by: FAZIL AHAMED A
 RegisterNumber: 212225040089
 
 ~~~~
-module exp11(out,clk,rstn);
-input clk,rstn;
-output reg [3:0]out;
-always @ (posedge clk)
+module sisomod(clk,clear,si,so);
+input clk,si,clear;
+output so;
+reg so;
+reg [3:0] tmp;
+always @(posedge clk )
 begin
-	if(!rstn)
-		out<=0;
-	else
-		out <= out+1;
+if (clear)
+tmp <= 4'b0000;
+else
+tmp <= tmp << 1;
+tmp[0] <= si;
+so = tmp[3];
 end
-endmodule
+endmodule 
 ~~~~
 
 **RTL LOGIC FOR SISO Shift Register**
 
-<img width="1402" height="600" alt="image" src="https://github.com/user-attachments/assets/fb87f39b-670a-4130-8d19-b6fb1a686d1b" />
+<img width="945" height="488" alt="image" src="https://github.com/user-attachments/assets/5488c3e8-45b6-4d93-bfc8-0d59b2a62c5e" />
 
 
 **TIMING DIGRAMS FOR SISO Shift Register**
 
-<img width="1449" height="901" alt="image" src="https://github.com/user-attachments/assets/f03687ca-78ad-452e-9890-aa1cc84b8f48" />
+<img width="1730" height="884" alt="image" src="https://github.com/user-attachments/assets/d2f48cc2-8567-42e3-88f6-9ef6c35c4d24" />
 
 
 **RESULTS**
